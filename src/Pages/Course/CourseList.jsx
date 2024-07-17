@@ -4,6 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import CourseCard from "../../Components/CourseCard";
 import HomeLayout from "../../Layouts/HomeLayout";
 import { getAllCourses } from "../../Redux/Slices/CourseSlice";
+import InstructorDetails from "../../Components/InstructorDetails";
+import { instructorData } from "../../Constants/InstructorData";
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import '../../App.css';
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { faqs } from "../../Constants/Faq";
+import Faq from "../../Components/Faq";
+
+
 
 function CourseList() {
     const dispatch = useDispatch();
@@ -30,9 +48,51 @@ function CourseList() {
                         return <CourseCard key={element._id} data={element} />
                     })}
                 </div>
-                
-
             </div>
+
+            {/* Instructor details */}
+            <div className=" mx-6 bg-slate-800 rounded-lg border-dashed border-2 py-5 px-4 border-gray-400 mt-6 md:mt-10">
+                <div className=" px-6 py-3 text-white">
+                <h1 className=" text-4xl md:text-5xl font-bold text-gray-300"> <span className=" text-gray-600">Meet Your</span> <br /> Instructors who are here to Make this Possible</h1>
+                   <p className=" font-bold text-[17px] text-gray-400 mt-2">Discover brilliance in code with our expert instructors. <br /> Passionate mentors dedicated to fueling your coding journey at SkillRize.</p>
+                </div>
+                <div className=" px-6 py-3 rounded-lg">
+                <Swiper
+                    spaceBetween={30}
+                    centeredSlides={true}
+                    autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                    }}
+                    pagination={{
+                    clickable: true,
+                    }}
+                    navigation={true}
+                    modules={[Autoplay, Pagination, Navigation]}
+                    className="mySwiper"
+                >
+                
+                {
+                    instructorData.map((instructor)=>(
+                        <SwiperSlide>
+                            <InstructorDetails image={instructor.image} name={instructor.name} description={instructor.description} about={instructor.about} />
+                        </SwiperSlide>
+                    ))
+                }
+                </Swiper>
+                </div>
+            </div>
+
+            {/* Faq */}
+            <div className=" mx-6 bg-gradient-to-tr from-slate-950 to-slate-800 mt-10 py-2 sm:p-6 lg:p-8 px-6 rounded-lg  ">
+            <h2 className="text-3xl mt-8 font-extrabold text-gray-200 ">Frequently Asked Questions</h2>
+            <div className="space-y-4 mt-5 py-3">
+                {faqs.map((faq, index) => (
+                    <Faq key={index} question={faq.question} answer={faq.answer} />
+                ))}
+            </div>
+          </div>
+            
         </HomeLayout>
     );
 

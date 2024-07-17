@@ -26,7 +26,29 @@ import FaqPage from './Pages/FaqPage';
 import ForgotPassword from './Pages/ForgotPassword';
 import ResetPassword from './Pages/ResetPassword';
 import EditLecture from './Pages/Dashboard/EditLecture';
+import PrivacyPolicy from './Pages/privacyPolicy';
+import TermsAndConditions from './Pages/TermsAndConditions';
+import RefundPolicy from './Pages/RefundPolicy';
+import Loading from './Components/Loading';
+import { useEffect, useState } from 'react';
+
+
+
 function App() {
+
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate an API call or some loading process
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2 seconds delay for demonstration
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -35,6 +57,9 @@ function App() {
         <Route path="/about" element={<AboutUs />} ></Route>\
         <Route path="/courses" element={<CourseList />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
+        <Route path="/RefundPolicy" element={<RefundPolicy />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/denied" element={<Denied />} />
 

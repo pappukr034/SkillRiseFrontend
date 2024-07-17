@@ -53,7 +53,7 @@ function HomeLayout({ children }) {
     }
 
     return (
-        <div className=" bg-slate-900 sticky"> 
+        <div className=" w-full bg-slate-900 sticky"> 
         <div className="drawer absolute left-0 z-50 w-fit">
             <input className="drawer-toggle" id="my-drawer" type="checkbox" />
             <div className="drawer-content">

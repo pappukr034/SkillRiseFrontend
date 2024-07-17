@@ -29,7 +29,7 @@ export const addCourseLecture = createAsyncThunk("/course/lecture/add", async (d
         formData.append("title", data.title);
         formData.append("description", data.description);
 
-        const response = axiosInstance.post(`/course/${data.id}`, formData);
+        const response = axiosInstance.post(`/course/${data?.id}`, formData);
         toast.promise(response, {
             loading: "adding course lecture",
             success: "Lecture added successfully",
@@ -44,7 +44,7 @@ export const addCourseLecture = createAsyncThunk("/course/lecture/add", async (d
 export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete", async (data) => {
     try {
 
-        const response = axiosInstance.delete(`/course/${data.courseId}?${data.lectureId}`);
+        const response = axiosInstance.delete(`/course/${data.courseId}/${data.lectureId}`);
         toast.promise(response, {
             loading: "deleting course lecture",
             success: "Lecture deleted successfully",
@@ -89,7 +89,6 @@ const lectureSlice = createSlice({
             state.lectures = action?.payload?.lectures;
         })
         .addCase(addCourseLecture.fulfilled, (state, action) => {
-            console.log(action);
             state.lectures = action?.payload?.course?.lectures;
         })
     }

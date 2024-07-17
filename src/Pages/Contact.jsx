@@ -61,7 +61,7 @@ function Contact() {
     return (
         <HomeLayout>
                <h1 className="text-center text-6xl font-semibold bg-gradient-to-r from-lime-300 to-orange-500 bg-clip-text text-transparent mt-8">
-                 Contact Form
+               Get In Touch
                 </h1>
         <div className="flex mt-10 mb-5 w-full flex-col md:flex-row bg-slate-950">
             <div className="p-5 md:w-1/2 bg-slate-950 ">            

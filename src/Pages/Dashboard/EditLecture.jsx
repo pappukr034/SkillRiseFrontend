@@ -51,7 +51,7 @@ function EditLecture() {
 
     async function handleEdit(e){
         e.preventDefault()
-        const response=await dispatch(editCourseLectures(userInput))
+        const response=await dispatch(editCourseLectures({userInput}))
 
         if(response?.payload?.success) {
             navigate(-1);

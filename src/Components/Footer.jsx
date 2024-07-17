@@ -1,29 +1,58 @@
 import { BiPhone, BiSolidLocationPlus, BiSolidMapPin } from 'react-icons/bi';
 import { BsFacebook, BsInstagram, BsLinkedin, BsTwitterX } from 'react-icons/bs';
 import { MdEmail } from "react-icons/md";
+import React, { useState, useEffect } from 'react';
 import { NavLink, Link,useNavigate } from 'react-router-dom';
+import pappuNavLogo from '../Assets/pappuNavLogo.jpg'
+import { BsArrowUp } from "react-icons/bs";
 function Footer() {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
 
     const navigate=useNavigate()
 
+    const [isVisible, setIsVisible] = useState(false);
+
+  // Show button when page is scrolled down
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  // Scroll to top of the page
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', toggleVisibility);
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+    };
+  }, []);
+
     return (
         <>
             <footer className=" bg-slate-900 text-white py-10 w-full">
             <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="flex flex-wrap flex-col md:flex-row gap-8">
                 {/* About Us */}
-                <div className=' flex justify-center gap-2 flex-col flex-wrap '>
-                    <div className='  flex items-center gap-28'>
+                <div className=' md:w-1/4 flex justify-center gap-2 flex-col flex-wrap '>
+                    <div className='  flex items-center gap-16'>
                         <img 
                          onClick={()=> navigate('/')}
                         className='rounded-full w-[50px] py-1 cursor-pointer'
-                        src="https://res.cloudinary.com/mybackendpappu/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1718547891/lms/dsbordizb4upefqspq1w.jpg" alt="logo" />
+                        src={pappuNavLogo} alt="logo" />
 
                   <div>
                         {/* <!-- Social Media Icons --> */}
-                        <div className=" flex-wrap px-1 flex justify-center items-center text-xl md:text-2xl gap-2">
+                        <div className=" flex-wrap flex justify-center items-center text-xl md:text-2xl gap-1">
                             <NavLink to='https://github.com/pappukr034/' className="text-white rounded-full p-1 duration-500 hover:bg-black">
                             <BsFacebook />
                             </NavLink>
@@ -62,6 +91,16 @@ function Footer() {
                     </ul>
                 </div>
 
+                {/* Legal links */}
+                <div className=' flex flex-col lg:ml-10 lg:mt-20 text-[18px] '>
+                    <h3 className="text-xl font-bold mb-4  w-[111px]">Legal links</h3>
+                    <ul className="text-gray-400 space-y-2">
+                    <li  className=' hover:text-orange-400 duration-300'><Link to='/privacy-policy'>Privacy Policy</Link></li>
+                    <li className=' hover:text-orange-400 duration-300'><Link to='/TermsAndConditions'>Terms & condition</Link></li>
+                    <li  className=' hover:text-orange-400 duration-300'><Link to='/RefundPolicy'>Refund & Cancellation Policy</Link></li>
+                    </ul>
+                </div>
+
                 {/* Contact Us */}
                 <div className='flex flex-col lg:ml-10 lg:mt-20 text-[18px] mb-2 gap-2'>
                     <h3 className="text-xl font-bold mb-4  w-[111px]">Contact Us</h3>
@@ -72,7 +111,7 @@ function Footer() {
                     <div className=' flex justify-start items-start gap-2'>
                        <MdEmail />
                         <a 
-                    className=' text-gray-200 text-base mt-1'
+                    className=' text-gray-200 hover:text-orange-400 duration-300 text-base mt-1'
                     href="mailto:pappukr034@gmail.com">Email us : pappukr034@gmail.com</a>
                     </div>
                     <div className=' flex justify-start items-start gap-2'>
@@ -87,9 +126,21 @@ function Footer() {
                 </div>
                 </div>
 
-                <div className="mt-8 border-t border-orange-400 pt-4 text-center text-gray-400">
-                &copy; {year} SkillRise. All rights reserved.
+                <div className="mt-8 border-orange-400 pt-4 text-center text-gray-400">
+                Copyright &copy; {year} SkillRise. All rights reserved.
                 </div>
+
+                {/* go to top button */}
+                <div className=" fixed z-50 bottom-16 right-4 rounded-full">
+                {isVisible && (
+                    <button
+                    onClick={scrollToTop}
+                    className="bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-700 transition duration-300"
+                    >
+                    <BsArrowUp className=' w-8 h-8' />
+                    </button>
+                )}
+               </div>
             </div>
             </footer>
         </>

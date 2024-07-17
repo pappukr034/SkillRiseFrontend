@@ -44,9 +44,9 @@ function NavBar() {
                             
                             {
                                 isLoggedIn && role === 'ADMIN' && (
-                                    <li>
+                                    <p>
                                         <Link to="/admin/dashboard"> Admin DashBoard</Link>
-                                    </li>
+                                    </p>
                                 )
                             }
                         </li>
@@ -59,9 +59,9 @@ function NavBar() {
                             
                             {
                                 isLoggedIn && role === 'ADMIN' && (
-                                    <li>
+                                    <p>
                                         <Link to="/course/create"> Create new courses</Link>
-                                    </li>
+                                    </p>
                                 )
                             }
                         </li>

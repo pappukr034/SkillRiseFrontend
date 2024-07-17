@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import HomeLayout from "../../Layouts/HomeLayout";
 import { RiFolderVideoFill } from "react-icons/ri";
 import { BsBarChart } from "react-icons/bs";
+import AboutCourse from "./AboutCourse";
 
 function CourseDescription() {
 
@@ -20,7 +21,8 @@ function CourseDescription() {
         <HomeLayout>
             <div className=" px-6 text-white bg-gradient-to-tr from-slate-900 to-slate-800">
 
-                <h1 className=" relative top-8 py-4 text-4xl text-center font-bold text-white md:text-6xl">Course overviwe</h1>
+                <div className=" bg-slate-800 rounded-lg py-2 px-1"> 
+                <h1 className=" relative top-8 py-4 text-4xl text-center font-bold text-white md:text-6xl">Course overview</h1>
                 <div className="flex flex-col md:gap-6 space-x-4 md:flex-row py-10 w-full">
 
                     <div className="space-y-5 mt-6 py-1 p-1 bg-cyan-300 rounded-md bg-gradient-to-bl from-slate-800 to-slate-950 lg:w-[40%]">
@@ -82,6 +84,12 @@ function CourseDescription() {
                         }
                     </div>
                 </div>
+                </div>
+            </div>
+
+            {/* About cource */}
+            <div className=" mx-6 mt-4 py-2 px-1">
+             <AboutCourse />
             </div>
         </HomeLayout>
     );

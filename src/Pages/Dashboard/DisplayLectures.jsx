@@ -15,7 +15,8 @@ function Displaylectures() {
     const {lectures} = useSelector((state) => state.lecture);
     const {role} = useSelector((state) => state.auth);
 
-    console.log("All fetche lectute  : ",lectures)
+    // console.log("All fetche lectute  : ",lectures)
+    // console.log("state : ",state)
      
     const [currentVideo, setCurrentVideo] = useState(0);
 
@@ -38,37 +39,38 @@ function Displaylectures() {
 
     return (
         <HomeLayout>
-            <div className="flex flex-col gap-10 items-center justify-center py-10 text-wihte w-full bg-gradient-to-tr from-slate-900 to-slate-700">
-                <div className="text-center text-[3rem] font-semibold text-white ">
+            <div className="flex flex-col items-center justify-center w-full bg-gradient-to-tr from-slate-900 to-slate-800">
+                <div className="text-center mt-10 text-[3rem] font-semibold text-white ">
                      {state?.title}
                 </div>
 
                 {(lectures && lectures.length > 0 ) ?  
-                    (<div className="flex  justify-center gap-10 w-full flex-col md:flex-row h-screen">
+                    (<div className="flex  justify-center w-full flex-col md:flex-row ">
                     {/* left section for playing videos and displaying course details to admin */}
-                   <div className="space-y-5 p-2 rounded-lg shadow-[0_0_10px_black] w-full  md:w-[60%] px-3 ">
-                        <video 
-                            src={lectures && lectures[currentVideo]?.lecture?.secure_url}
-                            className=" md:w-[100%] h-[20rem] w-[23rem] md:h-[60%] rounded-tl-lg rounded-tr-lg "   
-                            controls
-                            disablePictureInPicture
-                            muted
-                            controlsList="nodownload"
+                   <div className="rounded-lg py-4 w-full md:w-[70%] px-3 ">
+                       <div className=" bg-slate-800 rounded-lg px-2 py-4"> 
+                           <video 
+                                src={lectures && lectures[currentVideo]?.lecture?.secure_url}
+                                className="h-[23rem] w-[23rem] md:w-[50rem] md:h-[30rem] rounded-xl "   
+                                controls
+                                disablePictureInPicture
+                                muted
 
-                        >
-                        </video>    
-                        <div>
-                            <h1 className=" font-bold text-2xl text-yellow-500">
-                                {lectures && lectures[currentVideo]?.title}
-                            </h1>
-                            <p className=" text-gray-400 mt-2">
-                                {lectures && lectures[currentVideo]?.description}
-                            </p>
-                        </div>
+                            >
+                            </video>    
+                            <div>
+                                <h1 className=" font-bold text-2xl text-yellow-500 mt-2">
+                                    {lectures && lectures[currentVideo]?.title}
+                                </h1>
+                                <p className=" text-[17px] text-gray-400 mt-2 ">
+                                    {lectures && lectures[currentVideo]?.description}
+                                </p>
+                            </div>
+                       </div>
                    </div>
 
                    {/* right section for displaying list of lectres */}
-                   <ul className=" overflow-auto w-full px-4 rounded-lg shadow-[0_0_10px_black] space-y-4 py-2 md:w-[30%]">
+                   <ul className="w-full rounded-lg  space-y-4 md:w-[30%] bg-slate-900 px-3 py-4 mx-2 my-6">
                         <li className="font-semibold text-xl text-yellow-500 flex items-center justify-between">
                             <p>Modules</p>
                             {role === "ADMIN" && (
@@ -82,8 +84,8 @@ function Displaylectures() {
                             lectures.map((lecture, idx) => {
                                 return (
                                     <li className="space-y-2  rounded-md px-2 py-3 bg-gradient-to-tr from-slate-700 to-slate-950" key={lecture._id} >
-                                        <p className="cursor-pointer font-semibold" onClick={() => setCurrentVideo(idx)}>
-                                            <span>
+                                        <p className="cursor-pointer font-semibold text-white" onClick={() => setCurrentVideo(idx)}>
+                                            <span >
                                                 {" "} Lecture {idx + 1} : {" "}
                                             </span>
                                             {lecture?.title}
