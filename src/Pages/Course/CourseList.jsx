@@ -20,6 +20,7 @@ import '../../App.css';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { faqs } from "../../Constants/Faq";
 import Faq from "../../Components/Faq";
+import { BsSearch } from "react-icons/bs";
 
 
 
@@ -39,6 +40,14 @@ function CourseList() {
     return (
         <HomeLayout>
             <div className=" bg-gradient-to-tl from-slate-950 to-slate-700  flex flex-col px-6 text-white mx-auto">
+                   <div className=" flex w-full justify-between items-center bg-slate-800 mt-16 px-3 py-2 gap-2 rounded-lg">
+                       <BsSearch />
+                       <input
+                        type="text"
+                        placeholder="Search cources....."
+                        className=" w-full py-3 px-3 rounded-lg bg-slate-800 font-semibold outline-none focus:border focus:border-orange-300 "
+                        />
+                   </div>
                     <h1 className="text-center text-5xl lg:text-6xl font-semibold mb-5 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent mt-10">
                     Explore the courses made by{' '}
                     <span className="font-bold mt-1 text-yellow-500"> <br />Industry experts</span>
