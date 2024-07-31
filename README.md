@@ -1,8 +1,83 @@
-# React + Vite
+# Learning Management System (LMS)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![LMS Homepage](https://github.com/pappukr034/SkillRize/blob/main/Screenshot%202024-07-23%20213505.png)
+![LMS Homepage](https://github.com/pappukr034/SkillRize/blob/main/Screenshot%202024-07-23%20213543.png)
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This Learning Management System (LMS) is a full-stack application developed using the MERN stack (MongoDB, Express.js, React, Node.js). It provides an online platform for managing courses, delivering content, and facilitating user authentication and authorization. Key features include:
+
+- User Authentication and Authorization
+- Course Management
+- Content Delivery
+- Responsive Design
+- RESTful API
+- Database Management
+
+## Features
+
+- **Authentication and Authorization**: Secure user login and registration using JWT and bcrypt.
+- **Course Management**: Admin can create, update, and delete courses. Students can enroll in courses and access course materials.
+- **Responsive Design**: Fully responsive UI built with React, Redux Toolkit, HTML, and CSS.
+- **RESTful API**: Backend API built with Node.js and Express.js.
+- **Database Management**: Data stored and managed in MongoDB using Mongoose.
+
+## Technologies Used
+
+- Frontend: React, Redux Toolkit, HTML, CSS, JavaScript
+- Backend: Node.js, Express.js
+- Database: MongoDB, Mongoose
+- Authentication: JWT, bcrypt
+
+## Getting Started
+
+Follow these steps to run the project locally.
+
+### Prerequisites
+
+- Node.js
+- MongoDB
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/your-username](https://github.com/pappukr034/LMS)/lms.git
+   cd LMS
+2. **Install server dependencies:**
+   ```bash
+   cd backend
+   npm install
+
+3. **Install client dependencies:**
+   ```bash
+   cd frontend
+   npm install
+   
+### Running the Application
+
+1. **Start the backend server:**
+   ```bash
+   cd backend
+   npm run
+
+2. **Start the frontend server:**
+   ```bash
+   cd frontend
+   npm install
+
+3. **Open your browser and navigate to:**
+   ```bash
+    http://localhost:5171/
+
+
+### Configuration
+
+  1. **Clone the repository:**
+   ```bash
+   MONGO_URL=your-mongodb-uri
+   JWT_SECRET=your-jwt-secret
+
+
+
+
