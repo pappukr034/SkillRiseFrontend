@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-hot-toast";
 
 import axiosInstance from "../../Helpers/axiosInstance";
+import { act } from "react";
 
 const initialState = {
     courseData: []
@@ -63,6 +64,23 @@ export const createNewCourse = createAsyncThunk("/course/create", async (data) =
     }
 });
 
+export const getSearchedCourse = createAsyncThunk("/course/search", async (query) => {
+    try {
+        const response = axiosInstance.get(`/course/search?q=${query}`);
+        console.log("Searched response : ",(await response).data.courses)
+        toast.promise(response, {
+            loading: "Searching please wait...",
+            success: "Searched!",
+            error: "Failed to searched"
+        });
+
+        return (await response).data.courses
+
+    } catch(error) {
+        toast.error(error?.response?.data?.message);
+    }
+});
+
 const courseSlice = createSlice({
     name: "courses",
     initialState,
@@ -70,6 +88,11 @@ const courseSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getAllCourses.fulfilled, (state, action) => {
             if(action.payload) {
+                state.courseData = [...action.payload];
+            }
+        })
+        builder.addCase(getSearchedCourse.fulfilled,(state,action)=>{
+            if(action.payload){
                 state.courseData = [...action.payload];
             }
         })

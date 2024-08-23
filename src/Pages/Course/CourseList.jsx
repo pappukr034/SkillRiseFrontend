@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import CourseCard from "../../Components/CourseCard";
 import HomeLayout from "../../Layouts/HomeLayout";
-import { getAllCourses } from "../../Redux/Slices/CourseSlice";
+import { getAllCourses, getSearchedCourse } from "../../Redux/Slices/CourseSlice";
 import InstructorDetails from "../../Components/InstructorDetails";
 import { instructorData } from "../../Constants/InstructorData";
 
@@ -21,6 +21,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { faqs } from "../../Constants/Faq";
 import Faq from "../../Components/Faq";
 import { BsSearch } from "react-icons/bs";
+import toast from "react-hot-toast";
 
 
 
@@ -29,8 +30,22 @@ function CourseList() {
 
     const {courseData} = useSelector((state) => state.course);
 
+    const [query, setQuery] = useState('');
+    const [searchData, setsearchData] = useState([]);
+
     async function loadCourses() {
         await dispatch(getAllCourses());
+    }
+    const handleSearch=async (e)=>{
+        e.preventDefault();
+        if(query===""){
+            toast.error("Query is reqired")
+        }
+        const respnse =await dispatch(getSearchedCourse(query));
+        console.log("Front end resp",respnse)
+        setsearchData(respnse.courses)
+        console.log("Searched data fron : ",searchData)
+        setQuery("")
     }
 
     useEffect(() => {
@@ -40,23 +55,31 @@ function CourseList() {
     return (
         <HomeLayout>
             <div className=" bg-gradient-to-tl from-slate-950 to-slate-700  flex flex-col px-6 text-white mx-auto">
-                   <div className=" flex w-full justify-between items-center bg-slate-800 mt-16 px-3 py-2 gap-2 rounded-lg">
-                       <BsSearch />
+                   <div className={`flex w-full justify-between items-center bg-slate-800 mt-16  py-2 gap-2 rounded-lg border-lime-200 px-3 md:px-7`}>
+                       <BsSearch /> 
                        <input
                         type="text"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
                         placeholder="Search cources....."
-                        className=" w-full py-3 px-3 rounded-lg bg-slate-800 font-semibold outline-none focus:border focus:border-orange-300 "
+                        className=" w-full py-3 px-3 rounded-lg bg-slate-800 font-semibold outline-none "
                         />
+                        <button 
+                         onClick={handleSearch}
+                         className=" hover:bg-slate-600 py-3 px-5 rounded-lg"
+                        >Search</button>
                    </div>
                     <h1 className="text-center text-5xl lg:text-6xl font-semibold mb-5 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent mt-10">
                     Explore the courses made by{' '}
                     <span className="font-bold mt-1 text-yellow-500"> <br />Industry experts</span>
                     </h1>
-                <div className="mb-10 flex flex-wrap gap-14 mt-3">
-                    {courseData?.map((element) => {
-                        return <CourseCard key={element._id} data={element} />
-                    })}
-                </div>
+                    <div className="mb-10 flex flex-wrap gap-5 mt-3  w-full px-4 py-2">
+                    {
+                     courseData?.map((element) => {
+                            return <CourseCard key={element._id} data={element} />
+                        })
+                    }             
+                   </div>
             </div>
 
             {/* Instructor details */}

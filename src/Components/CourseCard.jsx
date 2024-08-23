@@ -13,7 +13,7 @@ function CourseCard({ data }) {
     return (
         <div
             onClick={() => navigate("/course/description", {state: {...data}})} 
-            className="text-white bg-slate-900 w-[22rem] h-[470px] shadow-sm rounded-lg shadow-gray-500 cursor-pointer group  border border-gray-500 overflow-hidden hover:bg-gradient-to-tr hover:from-slate-900 hover:to-slate-700 hover:duration-300">
+            className="text-white bg-slate-900 w-[20rem] h-[450px] shadow-sm rounded-lg shadow-gray-500 cursor-pointer group  border border-gray-500 overflow-hidden hover:bg-gradient-to-tr hover:from-slate-900 hover:to-slate-700 hover:duration-300">
             <div className="overflow-hidden p-2 ">
                 <img 
                     className="h-48 w-full rounded-tl-lg rounded-tr-lg group-hover:scale=[1,2] transition-all ease-in-out diration-300 hover:scale-105"

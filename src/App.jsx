@@ -43,7 +43,7 @@ function App() {
     // Simulate an API call or some loading process
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // 2 seconds delay for demonstration
+    }, 1000); // 2 seconds delay for demonstration
   }, []);
 
   if (isLoading) {
